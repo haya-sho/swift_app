@@ -1,13 +1,13 @@
 //
-//  minusMoneyViewController.swift
+//  fixedCostViewController.swift
 //  swift_challenge
 //
-//  Created by user on 2023/06/12.
+//  Created by user on 2023/06/13.
 //
 
 import UIKit
 
-class minusMoneyViewController: UIViewController {
+class fixedCostViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,12 +15,7 @@ class minusMoneyViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func sendMinusData(_ sender: Any) {
-            let vc = ViewController()
-                    navigationController?.pushViewController(vc, animated: true)
-        
-    }
-    
+
     /*
     // MARK: - Navigation
 

@@ -59,6 +59,9 @@
                                                     <color key="backgroundColor" red="0.81568627449999997" green="0.96078431369999995" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </backgroundConfiguration>
                                             </buttonConfiguration>
+                                            <connections>
+                                                <action selector="sendMinusData:" destination="-1" eventType="touchUpInside" id="NA9-x2-ecC"/>
+                                            </connections>
                                         </button>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="金額を記入" textAlignment="natural" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="87i-vX-sYI">
                                             <rect key="frame" x="126" y="343" width="163" height="34"/>

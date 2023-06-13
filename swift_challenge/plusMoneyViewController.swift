@@ -8,13 +8,27 @@
 import UIKit
 
 class plusMoneyViewController: UIViewController {
+    
+    //増額するコメントを変数として宣言
+    @IBOutlet weak var plusItem: UITextField!
+    //増額する金額を変数として宣言
+    @IBOutlet weak var plusCost: UITextField!
+    
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
+    @IBAction func sendPlusData(_ sender: Any) {
+        self.navigationController?.popToRootViewController(animated: true)
+     
+        }
+    
 
+    
+    
 
     /*
     // MARK: - Navigation
