@@ -7,26 +7,68 @@
 
 import UIKit
 
-class balanceTableViewController: UIViewController {
+class balanceTableViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+    var newplusItem: String?
+    var newPlusCost: Int?
     
-    @IBOutlet weak var label: UILabel!
+    //収支履歴のラベル
+    @IBOutlet weak var rireki: UILabel!
     
-    var getplusCost = ""
+    //テーブル
+    @IBOutlet weak var allTable: UITableView!
+ 
+//    //金額が表示されるラベル
+//    @IBOutlet weak var costLabel: UILabel!
+//    //項目が表示されるラベル
+//    @IBOutlet weak var itemLabel: UILabel!
+    
+    
+    //帳簿というUserDefauletsデータを宣言
+    var chobo:[[String: Any]] = []
+    
+//    var getplusCost = ""
+//    var getplusItem = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        label.text = getplusCost
+        
+        allTable.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        //帳簿というUserDefaultsデータを宣言
+        chobo = UserDefaults.standard.array(forKey: "chobo")as? [[String: Any]] ?? []
+        allTable.delegate = self
+        allTable.dataSource = self
+        //一旦消去
+//        UserDefaults.standard.removeObject(forKey: "chobo")
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return chobo.count
     }
-    */
-
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //CellのIDでUITαbleViewCellのインスタンスを作成
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier:"Cell", for: indexPath)
+        
+        //ラベルにデータをセットする
+        
+        // セルの背景色を設定
+           cell.backgroundColor = UIColor.gray
+       
+       if let Label1 = cell.viewWithTag(1) as? UILabel,
+            let Label2 = cell.viewWithTag(2) as? UILabel{
+           let cellData = chobo[indexPath.row]
+          
+           Label1.text = (cellData["item"] as? String)
+           if let cellCost = (cellData["cost"] as? Int){
+               Label2.text = String(cellCost)
+           }
+//           Label1.textColor = UIColor.black
+//           Label2.textColor = UIColor.black
+       }
+            
+        return cell
+    }
+    
+    
 }
