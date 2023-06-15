@@ -9,7 +9,7 @@ import UIKit
 
 
 //テーブルデータ操作のために、UITableViewDelegate, UITableViewDataSourceを追加
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     //増やす、減らすボタン
     @IBOutlet weak var plusMoney: UIButton!
     @IBOutlet weak var minusMoney: UIButton!
@@ -30,11 +30,11 @@ class ViewController: UIViewController {
         //書式をここに書く
         inputCost.textColor = UIColor.black
         inputItem.textColor = UIColor.black
-        inputCost.keyboardType = UIKeyboardType.numberPad
+//        inputCost.keyboardType = UIKeyboardType.numberPad
         
-        
-        
-        
+        // テキストフィールドのデリゲートを設定
+                inputCost.delegate = self
+
     }
 
     
@@ -55,33 +55,28 @@ class ViewController: UIViewController {
             UserDefaults.standard.set(chobo, forKey: "chobo")
             
             
+            //残高計算
             
-            
-            
-            //            //残高計算
-            //            // numにtextFieldに入力された数字を入れる
-            //                    guard let num = Int(inputCost.text!) else {
-            //                        return
-            //                    }
-            //            // sumTextにnumの数字を入れて、sumTextに入れる。
-            //            let startText:Int = 0
-            //            let sumText:Int
-            //
-            //            if String(startText) != UserDefaults.standard.array(forKey: "sum") as! String{
-            //                sumText = Int(lastBalance) + num
-            //            }else{
-            //                sumText = startText + num
-            //            }
-            //            // UserDefaultsにaTextの値をtextKeyで保存する
-            //                    UserDefaults.standard.set(String(sumText), forKey: "sum")
-            //            //残高に表示させる
-            //            sumBalance.text = String(sumText)
-            //
-            //        }
+            if let costNum = Int(inCotx){
+                // sumTextにnumの数字を入れて、sumTextに入れる。
+               
+                let sumNum = UserDefaults.standard.integer(forKey: "sum")
+                //sumというKeyに入っている文字列の合計値を抜き出す
+                
+                    let newNum = costNum + sumNum
+                sumBalance.text = "\(newNum)"
+                    print(newNum)
+                    // UserDefaultsにsumNumの値をsumというKeyで保存する
+                    UserDefaults.standard.set(newNum, forKey: "sum")
+              
+            }
             
             
         }
+            
+        
     }
+        
     
     //減らすボタンを押した時のアクション
     @IBAction func minusMoney(_ sender: Any) {
@@ -99,22 +94,21 @@ class ViewController: UIViewController {
             // 更新されたデータをUserDefaultsに保存する
             UserDefaults.standard.set(chobo, forKey: "chobo")
             
-//            //残高計算
-//            // numにtextFieldに入力された数字を入れる
-//                    guard let num = Int(inputCost.text!) else {
-//                        return
-//                    }
-//            // sumTextにnumの数字を入れて、sumTextに入れる。
-//                    sumText = sumText - num
-//            // UserDefaultsにaTextの値をtextKeyで保存する
-//                    UserDefaults.standard.set(String(sumText), forKey: "sum")
-//            print(sumText)
-//            //残高に表示させる
-//            sumBalance.text = String(sumText)
-//
-//
-//
-//
+            //残高計算
+            
+            if let costNum = Int(inCotx){
+                // sumTextにnumの数字を入れて、sumTextに入れる。
+               
+                let sumNum = UserDefaults.standard.integer(forKey: "sum")
+                //sumというKeyに入っている文字列の合計値を抜き出す
+                
+                    let newNum = sumNum - costNum
+                sumBalance.text = "\(newNum)"
+                    print(newNum)
+                    // UserDefaultsにsumNumの値をsumというKeyで保存する
+                    UserDefaults.standard.set(newNum, forKey: "sum")
+              
+            }
         }
     }
     
@@ -131,10 +125,3 @@ class ViewController: UIViewController {
 
 
 
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "plusGo"{
-//                  let destinationVC = segue.destination as! balanceTableViewController
-//                  destinationVC.getplusCost = inputCost.text!
-//            destinationVC.getplusItem = inputCost.text!
-//        }
-//      }

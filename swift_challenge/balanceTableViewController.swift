@@ -42,6 +42,7 @@ class balanceTableViewController: UIViewController,UITableViewDelegate, UITableV
 //        allTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         //帳簿というUserDefaultsデータを宣言
         chobo = UserDefaults.standard.array(forKey: "chobo")as? [[String: Any]] ?? []
+        chobo.reverse()
         allTable.delegate = self
         allTable.dataSource = self
   
@@ -50,7 +51,8 @@ class balanceTableViewController: UIViewController,UITableViewDelegate, UITableV
     @IBAction func allDelete(_ sender: Any) {
 //        帳簿をリセットする
         UserDefaults.standard.removeObject(forKey: "chobo")
-        
+        UserDefaults.standard.set(0, forKey: "sum")
+        dismiss(animated: true, completion: nil)
         
     }
     
@@ -78,34 +80,5 @@ class balanceTableViewController: UIViewController,UITableViewDelegate, UITableV
             
             return cell
         }
-
-//        //CellのIDでUITαbleViewCellのインスタンスを作成
-//
-//        let cell = tableView.dequeueReusableCell(withIdentifier:"cell", for: indexPath)
         
-        //ラベルにデータをセットする
-        
-        // セルの背景色を設定
-//           cell.backgroundColor = UIColor.gray
-//
-//        //普通のテキストなら入れることができる
-//        let cellData = chobo[indexPath.row]
-//        cell.textLabel?.text = (cellData["item"] as? String)
-
-//        let cellData = chobo[indexPath.row]
-//       if let Label1 = cell.viewWithTag(1) as? UILabel,
-//            let Label2 = cell.viewWithTag(2) as? UILabel{
-//
-//           Label1.text = (cellData["item"] as? String)
-//           if let cellCost = (cellData["cost"] as? Int){
-//               Label2.text = String(cellCost)
-//           }
-////           Label1.textColor = UIColor.black
-////           Label2.textColor = UIColor.black
-       
-            
-//        return cell
-//    }
-    
-    
 }
