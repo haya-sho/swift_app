@@ -16,6 +16,8 @@
 		CE16661B2A37F4F100FA8DE9 /* fixedCostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1666192A37F4F100FA8DE9 /* fixedCostViewController.swift */; };
 		CE16661C2A37F4F100FA8DE9 /* fixedCostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE16661A2A37F4F100FA8DE9 /* fixedCostViewController.xib */; };
 		CE3E04A62A3850F400A979A1 /* balanceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3E04A52A3850F400A979A1 /* balanceTableViewController.swift */; };
+		CE3E04B12A3AA41900A979A1 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3E04AF2A3AA41900A979A1 /* CustomTableViewCell.swift */; };
+		CE3E04B22A3AA41900A979A1 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3E04B02A3AA41900A979A1 /* CustomTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		CE1666192A37F4F100FA8DE9 /* fixedCostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fixedCostViewController.swift; sourceTree = "<group>"; };
 		CE16661A2A37F4F100FA8DE9 /* fixedCostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = fixedCostViewController.xib; sourceTree = "<group>"; };
 		CE3E04A52A3850F400A979A1 /* balanceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = balanceTableViewController.swift; sourceTree = "<group>"; };
+		CE3E04AF2A3AA41900A979A1 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		CE3E04B02A3AA41900A979A1 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +50,8 @@
 		CE1665DD2A36ADDD00FA8DE9 = {
 			isa = PBXGroup;
 			children = (
+				CE3E04AF2A3AA41900A979A1 /* CustomTableViewCell.swift */,
+				CE3E04B02A3AA41900A979A1 /* CustomTableViewCell.xib */,
 				CE1665E82A36ADDD00FA8DE9 /* swift_challenge */,
 				CE1665E72A36ADDD00FA8DE9 /* Products */,
 			);
@@ -141,6 +147,7 @@
 				CE1665F62A36ADDD00FA8DE9 /* LaunchScreen.storyboard in Resources */,
 				CE1665F32A36ADDD00FA8DE9 /* Assets.xcassets in Resources */,
 				CE1665F12A36ADDD00FA8DE9 /* Main.storyboard in Resources */,
+				CE3E04B22A3AA41900A979A1 /* CustomTableViewCell.xib in Resources */,
 				CE16661C2A37F4F100FA8DE9 /* fixedCostViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,6 +159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE3E04B12A3AA41900A979A1 /* CustomTableViewCell.swift in Sources */,
 				CE1665EE2A36ADDD00FA8DE9 /* ViewController.swift in Sources */,
 				CE16661B2A37F4F100FA8DE9 /* fixedCostViewController.swift in Sources */,
 				CE3E04A62A3850F400A979A1 /* balanceTableViewController.swift in Sources */,

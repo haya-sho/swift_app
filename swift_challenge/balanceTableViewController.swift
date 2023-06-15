@@ -17,7 +17,11 @@ class balanceTableViewController: UIViewController,UITableViewDelegate, UITableV
     //テーブル
     @IBOutlet weak var allTable: UITableView!
  
-//    //金額が表示されるラベル
+    //データの削除ボタン
+    @IBOutlet weak var allDelete: UIButton!
+    
+    
+    //    //金額が表示されるラベル
 //    @IBOutlet weak var costLabel: UILabel!
 //    //項目が表示されるラベル
 //    @IBOutlet weak var itemLabel: UILabel!
@@ -26,41 +30,71 @@ class balanceTableViewController: UIViewController,UITableViewDelegate, UITableV
     //帳簿というUserDefauletsデータを宣言
     var chobo:[[String: Any]] = []
     
-//    var getplusCost = ""
-//    var getplusItem = ""
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        allTable.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        allTable.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
+       
+
+        
+//        allTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         //帳簿というUserDefaultsデータを宣言
         chobo = UserDefaults.standard.array(forKey: "chobo")as? [[String: Any]] ?? []
         allTable.delegate = self
         allTable.dataSource = self
-//        UserDefaults.standard.removeObject(forKey: "chobo")
+  
     }
+    
+    @IBAction func allDelete(_ sender: Any) {
+//        帳簿をリセットする
+        UserDefaults.standard.removeObject(forKey: "chobo")
+        
+        
+    }
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chobo.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //CellのIDでUITαbleViewCellのインスタンスを作成
         
-        let cell = tableView.dequeueReusableCell(withIdentifier:"Cell", for: indexPath)
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell",for: indexPath) as! CustomTableViewCell
+        let cellData = chobo[indexPath.row]
+            cell.itemLabel.text = (cellData["item"] as? String)
+        cell.costLabel.text = (cellData["cost"] as? String)
+        
+        if let imageName = cellData["imageName"] as? String {
+            cell.iconImageView.image = UIImage(named: imageName)}else {
+                cell.iconImageView.image = UIImage(named: "minus")
+            }
+        
+        
+        
+            
+            return cell
+        }
+
+//        //CellのIDでUITαbleViewCellのインスタンスを作成
+//
+//        let cell = tableView.dequeueReusableCell(withIdentifier:"cell", for: indexPath)
         
         //ラベルにデータをセットする
         
         // セルの背景色を設定
-           cell.backgroundColor = UIColor.gray
-        
-        //普通のテキストなら入れることができる
-        let cellData = chobo[indexPath.row]
-        cell.textLabel?.text = (cellData["item"] as? String)
-       
+//           cell.backgroundColor = UIColor.gray
+//
+//        //普通のテキストなら入れることができる
+//        let cellData = chobo[indexPath.row]
+//        cell.textLabel?.text = (cellData["item"] as? String)
+
+//        let cellData = chobo[indexPath.row]
 //       if let Label1 = cell.viewWithTag(1) as? UILabel,
 //            let Label2 = cell.viewWithTag(2) as? UILabel{
-//           let cellData = chobo[indexPath.row]
 //
 //           Label1.text = (cellData["item"] as? String)
 //           if let cellCost = (cellData["cost"] as? Int){
@@ -68,10 +102,10 @@ class balanceTableViewController: UIViewController,UITableViewDelegate, UITableV
 //           }
 ////           Label1.textColor = UIColor.black
 ////           Label2.textColor = UIColor.black
-//       }
+       
             
-        return cell
-    }
+//        return cell
+//    }
     
     
 }
