@@ -32,12 +32,34 @@ class ViewController: UIViewController, UITextFieldDelegate {
         //書式をここに書く
         inputCost.textColor = UIColor.black
         inputItem.textColor = UIColor.black
-//        inputCost.keyboardType = UIKeyboardType.numberPad
         
-
-      
-
     }
+    
+    // コストのインプットフォームの入力が変更されたときに呼ばれるメソッド
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // コストの入力フォーマットを3桁ごとに区切る
+        if textField == inputCost {
+            // テキストフィールドの現在のテキストと入力されたテキストを結合
+            let text = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
+            // 文字列を数値に変換
+            if let cost = Int(text) {
+                // 3桁ごとにカンマを追加してフォーマット
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .decimal
+                if let formattedText = formatter.string(from: NSNumber(value: cost)) {
+                    // フォーマットされたテキストをテキストフィールドに表示
+                    textField.text = formattedText
+                }
+            }
+            // 入力が変更されたので、テキストフィールドに反映させないようにfalseを返す
+            return false
+        }
+        // その他のテキストフィールドの場合は入力を許可
+        return true
+    }
+    
+    
+    
 
     
     
@@ -49,8 +71,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
             //UserDefaultsのchoboというキーに保存していく・・・{"chobo":[{},{},{}]}
             var chobo = UserDefaults.standard.array(forKey: "chobo")as? [[String: Any]] ?? []
             //保存するデータを記載
+            //日付を取得
+            let currentDate = Date()
+            
             //配列が空なら配列を作る&新しいデータをsetする
-            let newData = ["cost":inCotx,"item":inIttx,"imageName":"plus"]as [String:Any]
+            let newData = ["cost":inCotx,"item":inIttx,"imageName":"plus","date": currentDate]as [String:Any]
+            
             //choboにんアペンドする
             chobo.append(newData)
             // 更新されたデータをUserDefaultsに保存する
@@ -59,22 +85,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
             //実行後はラベルの中身を消す
             inputCost.text = ""
             inputItem.text = ""
+        
             
-            //残高計算
-            
-            if let costNum = Int(inCotx){
-                // sumTextにnumの数字を入れて、sumTextに入れる。
-               
+            // 残高計算後にフォーマットを適用して表示
+            if let costNum = Int(inCotx) {
                 let sumNum = UserDefaults.standard.integer(forKey: "sum")
-                //sumというKeyに入っている文字列の合計値を抜き出す
-                
-                    let newNum = costNum + sumNum
-                sumBalance.text = "\(newNum)"
-                    print(newNum)
-                    // UserDefaultsにsumNumの値をsumというKeyで保存する
-                    UserDefaults.standard.set(newNum, forKey: "sum")
-              
+                let newNum = sumNum + costNum
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .decimal
+                if let formattedText = formatter.string(from: NSNumber(value: newNum)) {
+                    sumBalance.text = formattedText
+                }
+                UserDefaults.standard.set(newNum, forKey: "sum")
             }
+            
         }
 
     }
@@ -88,8 +112,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
             //UserDefaultsのchoboというキーに保存していく・・・{"chobo":[{},{},{}]}
             var chobo = UserDefaults.standard.array(forKey: "chobo")as? [[String: Any]] ?? []
             //保存するデータを記載
+            //日付を取得
+            let currentDate = Date()
+            
             //配列が空なら配列を作る&新しいデータをsetする
-            let newData = ["cost":inCotx,"item":inIttx,"imageName":"minus"]as [String:Any]
+            let newData = ["cost":inCotx,"item":inIttx,"imageName":"minus","date": currentDate]as [String:Any]
             //choboにんアペンドする
             chobo.append(newData)
        
@@ -100,25 +127,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
             inputCost.text = ""
             inputItem.text = ""
             
-            //残高計算
             
-            if let costNum = Int(inCotx){
-                // sumTextにnumの数字を入れて、sumTextに入れる。
-               
+            //残高計算////////////////////////////////////////
+            
+            
+            // 残高計算後にフォーマットを適用して表示
+            if let costNum = Int(inCotx) {
                 let sumNum = UserDefaults.standard.integer(forKey: "sum")
-                //sumというKeyに入っている文字列の合計値を抜き出す
-                
-                    let newNum = sumNum - costNum
-                sumBalance.text = "\(newNum)"
-                    print(newNum)
-                    // UserDefaultsにsumNumの値をsumというKeyで保存する
-                    UserDefaults.standard.set(newNum, forKey: "sum")
-              
+                let newNum = sumNum - costNum
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .decimal
+                if let formattedText = formatter.string(from: NSNumber(value: newNum)) {
+                    sumBalance.text = formattedText
+                }
+                UserDefaults.standard.set(newNum, forKey: "sum")
             }
+            
+            
         }
-        
-        
-        
         
         
     }

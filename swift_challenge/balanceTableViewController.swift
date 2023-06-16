@@ -64,13 +64,38 @@ class balanceTableViewController: UIViewController,UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell",for: indexPath) as! CustomTableViewCell
         let cellData = chobo[indexPath.row]
             cell.itemLabel.text = (cellData["item"] as? String)
-        cell.costLabel.text = (cellData["cost"] as? String)
+//        cell.costLabel.text = (cellData["cost"] as? String)
+        
+        
+        if let cost = cellData["cost"] as? String{
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .decimal
+            
+            if let costNum = Int(cost), let formattedCost = formatter.string(from: NSNumber(value: costNum)) {
+                cell.costLabel.text = formattedCost
+            } else {
+                cell.costLabel.text = cost
+            }
+        }
+        
+    
+        
+        
+        
+        
+        
+        //日付を表示
+        if let date = cellData["date"] as? Date {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy/MM/dd" // 日付の表示フォーマットを指定
+            
+            let dateString = dateFormatter.string(from: date)
+            cell.dateLabel.text = dateString
+        }
         
         if let imageName = cellData["imageName"] as? String {
-            cell.iconImageView.image = UIImage(named: imageName)}else {
-                cell.iconImageView.image = UIImage(named: "minus")
-            }
-        
+            cell.iconImageView.image = UIImage(named: imageName)
+        }
         
         
             
