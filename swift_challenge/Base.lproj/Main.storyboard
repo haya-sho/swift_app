@@ -3,7 +3,6 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -149,17 +148,17 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.72941178080000002" green="0.91764706370000004" blue="0.8156862855" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qsu-9S-eou">
-                                <rect key="frame" x="46" y="792" width="56" height="45"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7xQ-T3-VM3">
+                                <rect key="frame" x="288" y="793" width="65" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <size key="titleShadowOffset" width="4" height="0.0"/>
+                                <color key="backgroundColor" systemColor="systemCyanColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="">
-                                    <imageReference key="image" image="house" catalog="system" symbolScale="large"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large" weight="semibold"/>
-                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="baseBackgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <buttonConfiguration key="configuration" style="plain" title="削除">
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle3"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="allDelete:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AZ7-SN-9BH"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -170,6 +169,7 @@
                     <navigationItem key="navigationItem" id="JY0-lQ-fec"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="allDelete" destination="7xQ-T3-VM3" id="FnD-36-mvb"/>
                         <outlet property="inputCost" destination="AEn-iW-Kx4" id="85U-Yc-vF8"/>
                         <outlet property="inputItem" destination="usr-f3-phx" id="GIN-hl-hBj"/>
                         <outlet property="sumBalance" destination="mSz-cg-gx7" id="yML-wW-cAp"/>
@@ -219,19 +219,6 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.72941178080000002" green="0.91764706370000004" blue="0.8156862855" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7xQ-T3-VM3">
-                                        <rect key="frame" x="290" y="19" width="65" height="38"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" systemColor="systemCyanColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="削除">
-                                            <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle3"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="allDelete:" destination="xL3-si-Azx" eventType="touchUpInside" id="MJD-nC-2fv"/>
-                                            <action selector="allDelete:" destination="wCu-ir-A2b" eventType="touchUpInside" id="VPR-EL-yvl"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="21M-m0-jXI"/>
                                 <color key="backgroundColor" red="0.47450980390000003" green="0.87843137250000003" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -244,12 +231,10 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="allDelete" destination="7xQ-T3-VM3" id="4zR-0R-vvr"/>
                         <outlet property="allTable" destination="iAh-QP-NJn" id="4Ph-cI-IdK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T2m-R9-c0I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="wCu-ir-A2b" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="954.96183206106866" y="676.76056338028172"/>
         </scene>
@@ -276,7 +261,6 @@
         <segue reference="Wz1-JY-TrO"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="house" catalog="system" width="128" height="104"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -21,7 +21,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     //項目のインプットフォーム
     @IBOutlet weak var inputItem: UITextField!
     
-    var lastBalance:[[String: Any]] = []
+ 
+    @IBOutlet weak var allDelete: UIButton!
+    
     
     
     override func viewDidLoad() {
@@ -32,8 +34,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         inputItem.textColor = UIColor.black
 //        inputCost.keyboardType = UIKeyboardType.numberPad
         
-        // テキストフィールドのデリゲートを設定
-                inputCost.delegate = self
+
+      
 
     }
 
@@ -54,6 +56,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
             // 更新されたデータをUserDefaultsに保存する
             UserDefaults.standard.set(chobo, forKey: "chobo")
             
+            //実行後はラベルの中身を消す
+            inputCost.text = ""
+            inputItem.text = ""
             
             //残高計算
             
@@ -70,11 +75,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     UserDefaults.standard.set(newNum, forKey: "sum")
               
             }
-            
-            
         }
-            
-        
+
     }
         
     
@@ -94,6 +96,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
             // 更新されたデータをUserDefaultsに保存する
             UserDefaults.standard.set(chobo, forKey: "chobo")
             
+            //実行後はラベルの中身を消す
+            inputCost.text = ""
+            inputItem.text = ""
+            
             //残高計算
             
             if let costNum = Int(inCotx){
@@ -110,7 +116,29 @@ class ViewController: UIViewController, UITextFieldDelegate {
               
             }
         }
+        
+        
+        
+        
+        
     }
+    
+    @IBAction func allDelete(_ sender: Any) {
+        // 確認メッセージを表示
+            let alertController = UIAlertController(title: "確認", message: "帳簿の履歴を全て削除しますか？", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+            let resetAction = UIAlertAction(title: "削除", style: .destructive) { _ in
+                
+        //        帳簿をリセットする
+        UserDefaults.standard.removeObject(forKey: "chobo")
+        UserDefaults.standard.set(0, forKey: "sum")
+                self.dismiss(animated: true, completion: nil)
+                self.sumBalance.text = "0"
+            }
+              alertController.addAction(cancelAction)
+              alertController.addAction(resetAction)
+              present(alertController, animated: true, completion: nil)
+        }
     
     
 
@@ -124,4 +152,4 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
 
 
-
+ 

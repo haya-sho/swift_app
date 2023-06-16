@@ -8,9 +8,7 @@
 import UIKit
 
 class balanceTableViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
-    var newplusItem: String?
-    var newPlusCost: Int?
-    
+ 
     //収支履歴のラベル
     @IBOutlet weak var rireki: UILabel!
     
@@ -21,16 +19,10 @@ class balanceTableViewController: UIViewController,UITableViewDelegate, UITableV
     @IBOutlet weak var allDelete: UIButton!
     
     
-    //    //金額が表示されるラベル
-//    @IBOutlet weak var costLabel: UILabel!
-//    //項目が表示されるラベル
-//    @IBOutlet weak var itemLabel: UILabel!
-    
-    
     //帳簿というUserDefauletsデータを宣言
     var chobo:[[String: Any]] = []
     
-
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,16 +37,20 @@ class balanceTableViewController: UIViewController,UITableViewDelegate, UITableV
         chobo.reverse()
         allTable.delegate = self
         allTable.dataSource = self
+    
   
     }
     
-    @IBAction func allDelete(_ sender: Any) {
-//        帳簿をリセットする
-        UserDefaults.standard.removeObject(forKey: "chobo")
-        UserDefaults.standard.set(0, forKey: "sum")
-        dismiss(animated: true, completion: nil)
-        
-    }
+//    @IBAction func allDelete(_ sender: Any) {
+//        //        帳簿をリセットする
+//        UserDefaults.standard.removeObject(forKey: "chobo")
+//        UserDefaults.standard.set(0, forKey: "sum")
+//        dismiss(animated: true, completion: nil)
+//        
+//            
+//        }
+    
+    
     
     
     
